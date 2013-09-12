@@ -1,0 +1,27 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.body %></td>
+    
+      <%= form_for(task) do |f| %>
+        <td><%= f.check_box :finished %><span>Finished?</span></td>
+        <td><%= f.submit %></td>
+      <% end %>
+    <td><%= button_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_task_path %>
